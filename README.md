@@ -1,10 +1,9 @@
-# Bangladesh
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bangladesh: A Land of Diversity</title>
+    <title>Bangladesh: Official Information Portal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -20,6 +19,7 @@
             --accent: #ff9933;
             --light: #f8f8f8;
             --dark: #333;
+            --transition: all 0.3s ease;
         }
 
         body {
@@ -69,16 +69,16 @@
         nav ul {
             display: flex;
             list-style: none;
-            gap: 25px;
+            gap: 5px;
         }
 
         nav a {
             color: white;
             text-decoration: none;
             font-weight: 500;
-            padding: 5px 10px;
+            padding: 10px 15px;
             border-radius: 5px;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         nav a:hover, nav a.active {
@@ -113,7 +113,7 @@
             border-radius: 5px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         .btn:hover {
@@ -139,6 +139,21 @@
             width: 80px;
             height: 4px;
             background-color: var(--secondary);
+        }
+
+        .content-section {
+            display: none;
+            padding: 30px 0;
+        }
+
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .card-container {
@@ -230,6 +245,65 @@
             margin-bottom: 10px;
         }
 
+        .history-timeline {
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .history-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background-color: var(--primary);
+        }
+
+        .timeline-item {
+            width: 50%;
+            padding: 20px 40px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            width: 20px;
+            height: 20px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+        }
+
+        .timeline-item:nth-child(odd)::after {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-content h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
         footer {
             background-color: var(--dark);
             color: white;
@@ -282,9 +356,14 @@
             }
 
             nav ul {
-                gap: 10px;
+                gap: 5px;
                 flex-wrap: wrap;
                 justify-content: center;
+            }
+
+            nav a {
+                padding: 8px 12px;
+                font-size: 0.9rem;
             }
 
             .hero h1 {
@@ -293,6 +372,25 @@
 
             .hero p {
                 font-size: 1rem;
+            }
+
+            .history-timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 50px;
+                padding-right: 20px;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+
+            .timeline-item:nth-child(odd)::after,
+            .timeline-item:nth-child(even)::after {
+                left: 10px;
             }
         }
     </style>
@@ -307,13 +405,13 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="#" class="active">Home</a></li>
-                    <li><a href="#">History</a></li>
-                    <li><a href="#">Culture</a></li>
-                    <li><a href="#">Geography</a></li>
-                    <li><a href="#">Economy</a></li>
-                    <li><a href="#">Tourism</a></li>
-                    <li><a href="#">Education</a></li>
+                    <li><a href="#" class="nav-link active" data-section="home">Home</a></li>
+                    <li><a href="#" class="nav-link" data-section="history">History</a></li>
+                    <li><a href="#" class="nav-link" data-section="culture">Culture</a></li>
+                    <li><a href="#" class="nav-link" data-section="geography">Geography</a></li>
+                    <li><a href="#" class="nav-link" data-section="economy">Economy</a></li>
+                    <li><a href="#" class="nav-link" data-section="tourism">Tourism</a></li>
+                    <li><a href="#" class="nav-link" data-section="education">Education</a></li>
                 </ul>
             </nav>
         </div>
@@ -330,8 +428,8 @@
 
     <!-- Main Content -->
     <main class="container">
-        <!-- About Section -->
-        <section>
+        <!-- Home Section -->
+        <section id="home" class="content-section active">
             <h2 class="section-title">About Bangladesh</h2>
             <div class="card-container">
                 <div class="card">
@@ -347,7 +445,7 @@
 
                 <div class="card">
                     <div class="card-img">
-                        <img src="https://images.unsplash.com/photo-15819 rama-1b9a5c42a167?ixlib=rb-4.0.3" alt="Bangladesh Culture">
+                        <img src="https://images.unsplash.com/photo-1581988115590-baab13b4c6bb?ixlib=rb-4.0.3" alt="Bangladesh Culture">
                     </div>
                     <div class="card-content">
                         <h3>Rich Culture</h3>
@@ -367,11 +465,9 @@
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Quick Facts Section -->
-        <section class="quick-facts">
-            <div class="container">
+            <!-- Quick Facts Section -->
+            <div class="quick-facts">
                 <h2 class="section-title" style="color: white;">Quick Facts</h2>
                 <div class="facts-container">
                     <div class="fact-box">
@@ -396,10 +492,8 @@
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Tourism Section -->
-        <section>
+            <!-- Tourism Section -->
             <h2 class="section-title">Tourist Attractions</h2>
             <div class="card-container">
                 <div class="card">
@@ -436,6 +530,242 @@
                 </div>
             </div>
         </section>
+
+        <!-- History Section -->
+        <section id="history" class="content-section">
+            <h2 class="section-title">History of Bangladesh</h2>
+            <p>Bangladesh has a rich historical heritage dating back millennia. The region was part of various ancient kingdoms and empires, including the Mauryan Empire, the Gupta Empire, the Pala Empire, and the Bengal Sultanate.</p>
+            
+            <div class="history-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Ancient Period</h3>
+                        <p>Evidence of human settlement in Bangladesh dates back 4,000 years. The region was known as Gangaridai to the ancient Greeks and Romans.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Medieval Period</h3>
+                        <p>Islam was introduced in the 12th century. The Bengal Sultanate (1352–1576) was a major trading nation and one of Asia's wealthiest regions.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Colonial Era</h3>
+                        <p>The British East India Company established control in 1757. Bengal was partitioned in 1905, creating the province of East Bengal and Assam.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Partition & Pakistan</h3>
+                        <p>Following the partition of India in 1947, Bangladesh became East Pakistan, separated by 1,600 km of Indian territory.</p>
+                    </div>
+                </div>
+                great
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Liberation War</h3>
+                        <p>The Bangladesh Liberation War in 1971 led to independence from Pakistan after nine months of conflict.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Modern Bangladesh</h3>
+                        <p>Since independence, Bangladesh has developed into a democratic, secular republic with significant economic growth.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Culture Section -->
+        <section id="culture" class="content-section">
+            <h2 class="section-title">Culture of Bangladesh</h2>
+            <p>Bangladesh has a rich, diverse cultural heritage that encompasses literature, music, dance, drama, art, craft, folklore, and philosophy.</p>
+            
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?ixlib=rb-4.0.3" alt="Bengali Cuisine">
+                    </div>
+                    <div class="card-content">
+                        <h3>Cuisine</h3>
+                        <p>Bangladeshi cuisine is known for its rice, fish, and use of spices. Popular dishes include biryani, hilsa fish curry, and various sweets like roshogolla.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-164119 Adel-1b9a5c42a167?ixlib=rb-4.0.3" alt="Traditional Clothing">
+                    </div>
+                    <div class="card-content">
+                        <h3>Traditional Clothing</h3>
+                        <p>Traditional attire includes sarees for women and lungi or panjabi for men. The nakshi kantha is a traditional embroidered quilt.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1618669254010-6a10c64b5a4d?ixlib=rb-4.0.3" alt="Festivals">
+                    </div>
+                    <div class="card-content">
+                        <h3>Festivals</h3>
+                        <p>Major festivals include Pohela Boishakh (Bengali New Year), Eid ul-Fitr, Eid ul-Adha, Durga Puja, and Language Movement Day.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Geography Section -->
+        <section id="geography" class="content-section">
+            <h2 class="section-title">Geography of Bangladesh</h2>
+            <p>Bangladesh is a low-lying riverine country located on the fertile Bengal delta, with a largely marshy jungle coastline of 580 km along the Bay of Bengal.</p>
+            
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1597589827221-9abc0c7f5cc6?ixlib=rb-4.0.3" alt="Rivers">
+                    </div>
+                    <div class="card-content">
+                        <h3>River System</h3>
+                        <p>Bangladesh is known as the "land of rivers" with over 700 rivers including the Ganges, Brahmaputra, and Meghna forming the world's largest delta.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1587517415894-87d13be53ff4?ixlib=rb-4.0.3" alt="Climate">
+                    </div>
+                    <div class="card-content">
+                        <h3>Climate</h3>
+                        <p>Bangladesh has a tropical monsoon climate with six distinct seasons. It's vulnerable to climate change, with frequent cyclones and flooding.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1592409065737-1d8f0c634b70?ixlib=rb-4.0.3" alt="Wildlife">
+                    </div>
+                    <div class="card-content">
+                        <h3>Biodiversity</h3>
+                        <p>The Sundarbans mangrove forest is home to the Royal Bengal Tiger. Bangladesh has numerous species of birds, fish, and the national animal is the Bengal tiger.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Economy Section -->
+        <section id="economy" class="content-section">
+            <h2 class="section-title">Economy of Bangladesh</h2>
+            <p>Bangladesh has one of the fastest growing economies in the world. It has transformed from a primarily agricultural economy to one with significant manufacturing and service sectors.</p>
+            
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1581988115590-baab13b4c6bb?ixlib=rb-4.0.3" alt="Garment Industry">
+                    </div>
+                    <div class="card-content">
+                        <h3>Garment Industry</h3>
+                        <p>Bangladesh is the world's second-largest apparel exporter after China. The ready-made garments sector accounts for more than 80% of exports.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1586511348099-32ae1ce1f5ff?ixlib=rb-4.0.3" alt="Agriculture">
+                    </div>
+                    <div class="card-content">
+                        <h3>Agriculture</h3>
+                        <p>Rice, jute, tea, wheat, sugarcane, potatoes, tobacco, and fruits are major agricultural products. Bangladesh is the fourth largest rice producer globally.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1573588028698-9a9a6dae2c17?ixlib=rb-4.0.3" alt="Remittance">
+                    </div>
+                    <div class="card-content">
+                        <h3>Remittance</h3>
+                        <p>Remittances from Bangladeshis working abroad, especially in the Middle East, play a significant role in the economy, accounting for about 6% of GDP.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tourism Section -->
+        <section id="tourism" class="content-section">
+            <h2 class="section-title">Tourism in Bangladesh</h2>
+            <p>Bangladesh offers diverse attractions including archaeological sites, historical mosques, beaches, forests, and wildlife sanctuaries.</p>
+            
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1566549952257-37b685a5edf2?ixlib=rb-4.0.3" alt="Cox's Bazar">
+                    </div>
+                    <div class="card-content">
+                        <h3>Cox's Bazar</h3>
+                        <p>The world's longest natural sea beach, stretching 120 km along the Bay of Bengal. It's one of the most popular tourist destinations in Bangladesh.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1592409065737-1d8f0c634b70?ixlib=rb-4.0.3" alt="Sundarbans">
+                    </div>
+                    <div class="card-content">
+                        <h3>Sundarbans</h3>
+                        <p>The largest mangrove forest in the world, home to the Royal Bengal Tiger. It's a UNESCO World Heritage Site shared between Bangladesh and India.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1615551043360-33f08e6c9b0c?ixlib=rb-4.0.3" alt="Historical Sites">
+                    </div>
+                    <div class="card-content">
+                        <h3>Historical Sites</h3>
+                        <p>Bangladesh has numerous historical sites including the Sixty Dome Mosque, Lalbagh Fort, and Mahasthangarh - one of the earliest urban archaeological sites.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="content-section">
+            <h2 class="section-title">Education in Bangladesh</h2>
+            <p>Bangladesh has made significant progress in education, with near universal primary education enrollment and gender parity in primary and secondary education.</p>
+            
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3" alt="Education System">
+                    </div>
+                    <div class="card-content">
+                        <h3>Education System</h3>
+                        <p>The education system is divided into primary, secondary, and higher education levels. The literacy rate has risen to over 74% as of 2020.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1524178232400-38d816f003ae?ixlib=rb-4.0.3" alt="Universities">
+                    </div>
+                    <div class="card-content">
+                        <h3>Higher Education</h3>
+                        <p>Bangladesh has over 150 universities, including the University of Dhaka, Bangladesh University of Engineering and Technology, and North South University.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1584697964358-3e14ca57658b?ixlib=rb-4.0.3" alt="Digital Education">
+                    </div>
+                    <div class="card-content">
+                        <h3>Digital Education</h3>
+                        <p>The government has implemented digital education initiatives, including multimedia classrooms and online learning platforms to enhance education quality.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
@@ -448,10 +778,10 @@
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
-                    <p><a href="#">History</a></p>
-                    <p><a href="#">Culture</a></p>
-                    <p><a href="#">Geography</a></p>
-                    <p><a href="#">Economy</a></p>
+                    <p><a href="#" class="nav-link" data-section="history">History</a></p>
+                    <p><a href="#" class="nav-link" data-section="culture">Culture</a></p>
+                    <p><a href="#" class="nav-link" data-section="geography">Geography</a></p>
+                    <p><a href="#" class="nav-link" data-section="economy">Economy</a></p>
                 </div>
                 <div class="footer-section">
                     <h3>Contact Us</h3>
@@ -472,17 +802,43 @@
     </footer>
 
     <script>
-        // Simple JavaScript for interactive elements
+        // JavaScript for section navigation
         document.addEventListener('DOMContentLoaded', function() {
-            const navLinks = document.querySelectorAll('nav a');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const contentSections = document.querySelectorAll('.content-section');
             
+            // Function to show a specific section
+            function showSection(sectionId) {
+                contentSections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                document.getElementById(sectionId).classList.add('active');
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if(link.getAttribute('data-section') === sectionId) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            // Add click event to navigation links
             navLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    navLinks.forEach(l => l.classList.remove('active'));
-                    this.classList.add('active');
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sectionId = this.getAttribute('data-section');
+                    showSection(sectionId);
+                    
+                    // Scroll to top
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
                 });
             });
             
+            // Make cards interactive
             const cards = document.querySelectorAll('.card');
             cards.forEach(card => {
                 card.addEventListener('mouseenter', function() {
